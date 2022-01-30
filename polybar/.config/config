@@ -1,0 +1,399 @@
+[colors]
+background = #282a36
+foreground = #f8f8f2
+black = #3B4252
+red = #ff5555
+green = #50fa7b
+yellow = #f1fa8c
+blue = #bd93f9
+magenta = #ff79c6
+cyan = #88C0D0
+white = #E5E9F0
+altblack = #4C566A
+altred = #BF616A
+altgreen = #A3BE8C
+altyellow = #EBCB8B
+altblue = #81A1C1
+altmagenta = #B48EAD
+altcyan = #8FBCBB
+altwhite = #ECEFF4
+
+shade-1 = #32344a
+shade-2 = #444b6a
+shade-3 = #787c99
+shade-4 = #CACACE
+shade-5 = #acb0d0
+
+[bar/main]
+width = 100%
+height = 22
+offset-y = 0
+top = true
+fixed-center = true
+
+;wm-restack = bspwm
+
+override-redirect = false
+
+scroll-up = next
+scroll-down = prev
+
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = "JetBrainsMono Nerd Font:style=Medium:size=11;2"
+font-1 = "JetBrainsMono Nerd Font:style=Bold:size=11;2"
+font-2 = "JetBrainsMono Nerd Font:size=19;5"
+
+tray-position = left
+tray-background = ${colors.altblack}
+modules-left =  
+modules-center =  
+modules-right =  RPL temperature pulseaudio YPL i3 GPL wlan MPL date 
+
+cursor-click = pointer
+
+[settings]
+screenchange-reload = true
+
+[module/bspwm]
+type = internal/bspwm
+
+format = <label-state> <label-mode>
+
+label-focused = %index%
+label-focused-foreground = ${colors.shade-5}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-foreground = ${colors.shade-3}
+label-occupied-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.shade-1}
+label-empty-padding = 2
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = "%a, %b %d %H:%M:%S"
+
+format = <label>
+format-foreground = ${colors.background}
+format-background = ${colors.magenta}
+format-padding = 1
+format-prefix = %{T5}%{T-}
+label = %{T1}%time%%{T-}
+label-padding = 1
+
+[module/margin]
+type = custom/text
+
+content = %{T2}%{T-}
+content-foreground = ${colors.background}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+
+format-volume = <label-volume>
+format-volume-padding = 0
+format-volume-prefix = %{T4} 墳 %{T-}
+format-volume-prefix-foreground = ${colors.background}
+format-volume-prefix-background = ${colors.red}
+label-volume = %{T1}%percentage%%%{T-}
+label-volume-foreground = ${colors.background}
+label-volume-background = ${colors.red}
+label-volume-padding = 0
+
+format-muted = <label-muted>
+format-muted-padding = 0
+format-muted-prefix = %{T4} 婢 %{T-}
+format-muted-prefix-foreground = ${colors.background}
+format-muted-prefix-background = ${colors.red}
+label-muted = %{T1}%percentage%%%{T-}
+label-muted-foreground = ${colors.background}
+label-muted-background = ${colors.red}
+label-muted-padding = 0
+
+click-right = pavucontrol&
+
+[module/wlan]
+type = internal/network
+interface = wlo1
+interval = 1.0
+
+
+format-connected = <label-connected>
+format-connected-padding = 0
+label-connected = %{A1:wifimenu:}直 %essid% %{A} 
+label-connected-foreground = ${colors.background}
+label-connected-background = ${colors.green}
+label-connected-padding = 0
+
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 0
+label-disconnected = %{A1:wifimenu:}%{A}
+label-disconnected-foreground = ${colors.background}
+label-disconnected-background = ${colors.green}
+label-disconnected-padding = 0
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+
+ws-icon-default = 
+
+
+fuzzy-match = true
+
+strip-wsnumbers = true
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 1
+label-mode-foreground = ${colors.background}
+label-mode-background = ${colors.yellow}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon% %name%
+label-focused-background = ${colors.yellow}
+label-focused-underline= ${colors.foreground}
+label-focused-foreground= ${colors.background}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 1
+label-unfocused-background = ${colors.yellow}
+label-unfocused-foreground = ${colors.background}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-foreground = ${self.label-focused-foreground}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+ label-separator = |
+ label-separator-background = ${colors.yellow}
+ label-separator-foreground = ${colors.background}
+
+
+ [module/spacing]
+type = custom/text
+content = " "
+content-background = ${color.background}
+
+[module/sep]
+type = custom/text
+content = -
+
+content-background = ${color.background}
+content-foreground = ${color.background}
+
+[module/dot]
+type = custom/text
+;content = 
+content = ""
+
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.altblack}
+content-padding = 1
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/LD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${color.background}
+content-foreground = ${color.altblack}
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon4/temp1_input
+base-temperature = 20
+warn-temperature = 70
+label-foreground = ${colors.background}
+label-background = ${colors.red}
+
+[module/RD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${color.background}
+content-foreground = ${color.altblack}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/RLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.red}
+
+[module/RRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/WLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.white}
+
+[module/WRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.white}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/CLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.cyan}
+
+[module/CRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.cyan}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/MLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.magenta}
+
+[module/MRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.magenta}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/YLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.yellow}
+
+[module/YRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.yellow}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/GLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.green}
+
+[module/GRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.green}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/BLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${color.background}
+content-foreground = ${color.blue}
+
+[module/BRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${colors.background}
+content-foreground = ${colors.blue}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/YPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${colors.red}
+content-foreground = ${colors.yellow}
+
+[module/GPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${colors.yellow}
+content-foreground = ${colors.green}
+
+[module/RPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${colors.background}
+content-foreground = ${colors.red}
+
+[module/MPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${colors.green}
+content-foreground = ${colors.magenta}
+
+[module/BPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${colors.altblack}
+content-foreground = ${colors.blue}
+
+[module/BGPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 6
+content-background = ${colors.blue}
+content-foreground = ${colors.background}
