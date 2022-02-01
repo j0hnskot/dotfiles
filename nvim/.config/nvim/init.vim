@@ -2,6 +2,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+set number
 set relativenumber
 set nowrap
 set hidden
@@ -11,13 +12,17 @@ set signcolumn=number
 set colorcolumn=80
 
 call plug#begin()
-"Plug 'nvim-lua/plenary.nvim'
-"Plug 'nvim-telescope/telescope.nvim'
+"Telescope https://github.com/nvim-telescope/telescope.nvim
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-fugitive'
 "Plug 'pangloss/vim-javascript'
 "Plug 'leafgarland/typescript-vim'
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "Plug 'ray-x/lsp_signature.nvim'
 "Plug 'kyazdani42/nvim-web-devicons' " for file icons
 "Plug 'kyazdani42/nvim-tree.lua'
@@ -32,9 +37,20 @@ call plug#end()
 colorscheme gruvbox
 highlight Normal guibg=none
 
+" map leader to Space
+let mapleader = " "
+
+" Telescope Stuff
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 "autocmd VimEnter * NERDTree | wincmd p
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 
 " make delete work a bit better
 inoremap , ,<c-g>u
@@ -51,6 +67,29 @@ nnoremap <C-i> i_<Esc>r
 "format your entire files with formatting motions, for example gggqG. :help gq for more info.
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 
+" Treeshitter config
+lua <<EOF
+require "nvim-treesitter.configs".setup {
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+}
+EOF
 " CoC default config 
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some

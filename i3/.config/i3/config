@@ -19,6 +19,8 @@ font pango:JetBrainsMono Nerd Font Medium 13
 
 # remove window title bars
 default_border pixel 0
+exec --no-startup-id picom -b
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -45,7 +47,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty 
+bindsym $mod+Shift+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -140,7 +143,7 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1. "
 set $ws2 "2. Terminal"
-set $ws3 "3"
+set $ws3 "3. Notes"
 set $ws4 "4"
 set $ws5 "5. Slack"
 set $ws6 "6"
@@ -175,6 +178,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 for_window [class="Spotify"] move to workspace $ws10
 assign [class="Google-chrome"] $ws1
+assign [class="notion"] $ws3
 assign [class="Slack"] $ws5
 assign [class="Gnome-control-center"] $ws9
 # reload the configuration file
@@ -223,8 +227,11 @@ exec autorandr docked
 exec spotify
 exec google-chrome
 exec slack
+exec notion
 exec gnome-control-center
 
+# Background using "feh"
+exec --no-startup-id "sh -c 'sleep 1; exec feh --randomize --auto-zoom --bg-fill /home/j0hnskot/Pictures/wallpapers/*'"
 
 #i3-gaps stuff 
 
