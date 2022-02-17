@@ -181,6 +181,7 @@ assign [class="Google-chrome"] $ws1
 assign [class="notion"] $ws3
 assign [class="Slack"] $ws5
 assign [class="Gnome-control-center"] $ws9
+assign [class="Blueman-manager"] $ws9
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -227,8 +228,12 @@ exec autorandr docked
 exec spotify
 exec google-chrome
 exec slack
-exec notion
+# without the below, when relogging to i3 the notion instance stays alive and causes 100% cpu
+exec --no-startup-id "sh -c 'killall notion-app-enhanced; sleep 1; exec notion'"
+# fix chrome scroll speed (need correct settings in .imwheelrc) 
+exec imwheel -b "4 5"
 exec gnome-control-center
+exec blueman-manager
 
 # Background using "feh"
 exec --no-startup-id "sh -c 'sleep 1; exec feh --randomize --auto-zoom --bg-fill /home/j0hnskot/Pictures/wallpapers/*'"

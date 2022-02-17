@@ -1,6 +1,7 @@
 set tabstop=4 
 set softtabstop=4
 set shiftwidth=4
+set smartindent
 set expandtab
 set number
 set relativenumber
@@ -10,6 +11,8 @@ set hidden
 set scrolloff=15
 set signcolumn=number
 set colorcolumn=80
+set ignorecase
+set laststatus=2
 
 call plug#begin()
 "Telescope https://github.com/nvim-telescope/telescope.nvim
@@ -87,6 +90,11 @@ require "nvim-treesitter.configs".setup {
       goto_node = '<cr>',
       show_help = '?',
     },
+    query_linter = {
+        enable = true,
+        use_virtual_text = true,
+        lint_events = {"BufWrite", "CursorHold"},
+     },
   }
 }
 EOF

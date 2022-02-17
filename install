@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-STOW_FOLDERS=("autorandr" "i3" "nvim" "tmux" "polybar")
+STOW_FOLDERS=("autorandr" "i3" "nvim" "tmux" "polybar" "zsh" "imwheel")
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
     echo "restowing: " $folder
