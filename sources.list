@@ -1,0 +1,26 @@
+## See sources.list(5) for more information, especialy
+# Remember that you can only use http, ftp or file URIs
+# CDROMs are managed through the apt-cdrom tool.
+# deb cdrom:[Pop_OS 21.10 _Impish Indri_ - Release amd64 (20211210)]/ impish main restricted
+deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main
+deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu   impish stable
+### THIS FILE IS AUTOMATICALLY CONFIGURED ###
+# You may comment out this entry, but any other modifications may be lost.
+deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
+### THIS FILE IS AUTOMATICALLY CONFIGURED ###
+# You may comment out this entry, but any other modifications may be lost.
+deb http://prerelease.keybase.io/deb stable main
+deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu/ impish main
+# deb-src http://ppa.launchpad.net/neovim-ppa/stable/ubuntu/ impish main
+deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_17.x impish main
+deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_17.x impish main
+deb http://ppa.launchpad.net/regolith-linux/release/ubuntu/ impish main
+# deb-src http://ppa.launchpad.net/regolith-linux/release/ubuntu/ impish main
+deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-autosuggestions/xUbuntu_21.10/ /
+deb http://repository.spotify.com stable non-free
+### THIS FILE IS AUTOMATICALLY CONFIGURED ###
+# You may comment out this entry, but any other modifications may be lost.
+deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main
+### THIS FILE IS AUTOMATICALLY CONFIGURED ###
+# You may comment out this entry, but any other modifications may be lost.
+deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main
